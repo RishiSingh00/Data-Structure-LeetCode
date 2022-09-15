@@ -1,28 +1,17 @@
 class Solution {
     public int minSteps(String s, String t) {
         
-        HashMap<Character,Integer> hsh1 = new HashMap<>();
-        HashMap<Character,Integer> hsh2 = new HashMap<>();
-        
+        int[] arr = new int[26];
         for(int i=0;i<s.length();i++) {
-            if(hsh1.containsKey(s.charAt(i)))
-                hsh1.replace(s.charAt(i),hsh1.get(s.charAt(i))+1);
-            else
-                hsh1.put(s.charAt(i),1);
+            arr[s.charAt(i)-'a']+=1;
         }
-        
         for(int i=0;i<t.length();i++) {
-            if(hsh1.containsKey(t.charAt(i)))
-                    hsh1.replace(t.charAt(i),hsh1.get(t.charAt(i))-1);
-            else
-                    hsh1.put(t.charAt(i),-1);
+            arr[t.charAt(i)-'a']-=1;
         }
         int ans =0;
-        
-        for(int i : hsh1.values()) {
-            ans+=Math.abs(i);
+        for(int i=0;i<26;i++) {
+            ans+=Math.abs(arr[i]);
         }
         return ans;
-        
     }
 }

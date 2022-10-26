@@ -1,25 +1,26 @@
 class Solution {
     public boolean isPalindrome(String s) {
         s= s.toLowerCase();
-        String newStr = "";
-        int len = 0;
         
-        for(int i = 0; i<s.length();i++) {
-            int ascii = s.charAt(i);  
+        int start = 0, end = s.length()-1;
+        
+        while(start<end)  {
+            int asciiS = s.charAt(start); 
+            int asciiE = s.charAt(end);  
             
-            if((ascii>=97 && ascii<=122) || (ascii>=48 && ascii<=57)) {
-                newStr+=s.charAt(i);
-                len++;
+            if((asciiS<97 || asciiS>122) && (asciiS<48 || asciiS>57)) {
+                start++;
+                continue;
             }
-        }
-        
-        
-        int end = len-1;
-        
-        for(int i=0;i<(int) len/2;i++) {
-            if(newStr.charAt(i)!=newStr.charAt(end-i)) {
+            if((asciiE<97 || asciiE>122) && (asciiE<48 || asciiE>57)) {
+                end--;
+                continue;
+            }
+            if(asciiS!=asciiE) {
                 return false;
             }
+            start++;
+            end--;
         }
         
         return true;

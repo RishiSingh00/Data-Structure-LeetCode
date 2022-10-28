@@ -7,18 +7,20 @@ class Solution {
         String ans = "",tempStr="";
         
         for(int i=0;i<s.length();i++) {
-            if(stk.empty() && s.charAt(i)>=97 && s.charAt(i)<=122)
+            
+            if(stk.empty() && Character.isAlphabetic(s.charAt(i)))
                 ans+=s.charAt(i);
+            
             else if(s.charAt(i)==']') {
                 tempStr = "";
                 
                 while(!stk.peek().equals("[")) {
-                    tempStr=stk.pop()+tempStr;
-                    
+                    tempStr=stk.pop()+tempStr;  
                 }
                 stk.pop();   //to pop '['
+                
                 int decimal=0,k=0;
-                while(!stk.empty() && stk.peek().charAt(0)>=48 && stk.peek().charAt(0)<=57) {
+                while(!stk.empty() && Character.isDigit(stk.peek().charAt(0))) {
                     int val=Integer.parseInt(String.valueOf(stk.pop()));
                     if(val!=0) {
                         k+=Math.pow(10,decimal)*val;

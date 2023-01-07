@@ -3,18 +3,18 @@ class Solution {
         
         int[] res = new int[nums.length];
         
-        int pIdx = -1;
-        int nIdx = -1;
-        int resIdx = 0;
+        int pIdx = 0;
+        int nIdx = 1;
+        
         for(int i=0; i< nums.length ; i++) {
             
-            if( i % 2 == 0 ) {
-                while(nums[++pIdx] < 0);
-                res[resIdx++] = nums[pIdx];
+            if( nums[i] > 0 ) {
+                res[pIdx] = nums[i];
+                pIdx+=2;
             }
             else {
-                while(nums[++nIdx] > 0);
-                res[resIdx++] = nums[nIdx];
+                res[nIdx] = nums[i];
+                nIdx+=2;
             }
         }
         

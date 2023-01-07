@@ -1,40 +1,31 @@
-class Solution {
-    void swap(int[] arr, int i, int j) {
-            int temp = arr[i];
-            arr[i] = arr[j];
-            arr[j] = temp;
-    }
-        
+public class Solution {
     public void nextPermutation(int[] nums) {
-     
-        if(nums.length == 1) return;
-
         int i = nums.length - 2;
-
-        for( ; i >=0 ; i--) {
-            if(nums[i] < nums[i+1]) {
-                break;
+        while (i >= 0 && nums[i + 1] <= nums[i]) {
+            i--;
+        }
+        if (i >= 0) {
+            int j = nums.length - 1;
+            while (nums[j] <= nums[i]) {
+                j--;
             }
+            swap(nums, i, j);
         }
+        reverse(nums, i + 1);
+    }
 
-         // to increase value of i both in case of with swap and without swap( i becomes -1)
-        if(i != -1) {
-            for(int j = nums.length-1; j > i ; j--) {
-                if(nums[j] > nums[i]){
-                    swap(nums,i,j);
-                    break;
-                }
-            }
+    private void reverse(int[] nums, int start) {
+        int i = start, j = nums.length - 1;
+        while (i < j) {
+            swap(nums, i, j);
+            i++;
+            j--;
         }
-        System.out.println("i ;"+i);
-        i++;
-        int e = (int)((nums.length - i)/2) ;
-        
-        System.out.println("e si : "+e);
-        
-        for(int j = 0 ; j < e ; j++) {
-            System.out.println("j : "+j);
-            swap(nums, j+i, nums.length - 1 - j);
-        }
+    }
+
+    private void swap(int[] nums, int i, int j) {
+        int temp = nums[i];
+        nums[i] = nums[j];
+        nums[j] = temp;
     }
 }

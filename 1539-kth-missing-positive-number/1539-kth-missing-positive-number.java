@@ -15,9 +15,9 @@ class Solution {
             }
             
             if(missing >= k)
-                e--;
+                e = mid - 1;
             else
-                s++;
+                s = mid + 1;
             
         }
         

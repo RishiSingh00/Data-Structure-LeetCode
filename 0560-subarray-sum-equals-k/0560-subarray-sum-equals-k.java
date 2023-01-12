@@ -9,9 +9,9 @@ class Solution {
         
         for(int i = 0 ; i < nums.length ; i++) {
             sum += nums[i];
-            if(hashOfOccurance.containsKey(sum - k)) {
-                count += hashOfOccurance.get(sum - k);
-            }
+            
+            count += hashOfOccurance.getOrDefault(sum - k, 0);
+            
             hashOfOccurance.put(sum, hashOfOccurance.getOrDefault(sum,0) + 1);
         }
         return count;

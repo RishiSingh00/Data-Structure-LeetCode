@@ -1,15 +1,18 @@
 class Solution {
     public int[] smallerNumbersThanCurrent(int[] nums) {
-        int[] ans = new int[nums.length];
-        Arrays.fill(ans,0);
-        int[] sorted = Arrays.copyOf(nums,nums.length);
-        Arrays.sort(sorted);
+        int[] map = new int[101];
+        
+        for(int i : nums)
+            map[i]++;
+        
+        for(int i = 1 ; i < 101 ; i++) {
+            map[i] += map[i-1];
+        }
+        int[] res = new int[nums.length];
         
         for(int i = 0 ; i < nums.length ; i++) {
-            int j = 0;
-            while(j < nums.length && nums[i] > sorted[j++])
-                ans[i]++;
+            res[i] = nums[i] == 0 ? 0 : map[nums[i] - 1];
         }
-        return ans;
+        return res;
     }
 }

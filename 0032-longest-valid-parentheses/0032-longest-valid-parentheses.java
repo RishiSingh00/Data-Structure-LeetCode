@@ -6,20 +6,31 @@ class Solution {
         countStk.push(0);
         
         for(int i = 0 ; i < s.length() ; i++) {
-            if(stk.empty() && s.charAt(i) == ')')
-                countStk.push(0);
-            
-            else if(s.charAt(i) == '(') {
-                stk.push('(');
+            if(s.charAt(i) == '(') {
                 countStk.push(1);
             }
-            
             else {
-                while(countStk.peek() % 2 == 0) {
-                    countStk.push(countStk.pop()+countStk.pop());
+                if(countStk.peek()==0)
+                    continue;
+                else if(countStk.peek() % 2 != 0) {
+                    countStk.push(countStk.pop() + 1);
                 }
-                stk.pop();
-                countStk.push(countStk.pop()+1);
+                else {
+                        int curr = countStk.pop();
+                        int prev = countStk.pop();
+                        while(prev %2 == 0 && prev != 0 ) {
+                            curr = curr+prev;
+                            prev = countStk.pop();
+                        }
+                        
+                        if(prev != 0)
+                            countStk.push(curr+prev+1);
+                        else {
+                            countStk.push(prev);
+                            countStk.push(curr);
+                            countStk.push(0);
+                        }                        
+                }
             }
         }
         

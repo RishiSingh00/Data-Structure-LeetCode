@@ -6,8 +6,7 @@ class Solution {
             hsh.add(ls.get(1));
         }
         for(List<String> ls : paths) {
-            if(hsh.contains(ls.get(0)))
-                hsh.remove(ls.get(0));
+            hsh.remove(ls.get(0));
         }
         
         

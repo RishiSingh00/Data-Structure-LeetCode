@@ -5,7 +5,7 @@ class Solution {
         for(int i : nums) {
             prefixSum[i]++;
         }
-        for(int i = 1 ; i <= target ; i++) {
+        for(int i = 1 ; i < 101 ; i++) {
             prefixSum[i] += prefixSum[i-1];
         }
         

@@ -1,1 +1,3 @@
+To understand this question, you have to understand how remainders work. If k = 5, then 6 % 5 = 1, which also means (6 + 5) % 5 = 1. So you use a hash map to check if you have seen that remainder before. If yes, then you know between both indexes, it is 5 (i.e. (6 + 5) - 6 = 5). This question tests nothing other than knowing how remainders work.
 ​
+i.e. agar mujhe phir se same number mil rha hai that means ki beech mein div by k or we can say 0 mila hai.

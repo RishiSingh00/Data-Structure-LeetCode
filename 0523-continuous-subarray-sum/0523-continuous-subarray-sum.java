@@ -7,7 +7,6 @@ class Solution {
         for(int i = 0 ; i < nums.length ; i++) {
             sum += nums[i];
             int key = sum % k;
-            System.out.println(sum + "sum and key " + key + " and i "+i);
             if(hsh.containsKey(key)){
                 if(i + 1 - hsh.get(key) > 1)
                     return true;}

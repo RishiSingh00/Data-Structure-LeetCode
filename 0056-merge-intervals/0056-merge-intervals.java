@@ -28,7 +28,6 @@ class Solution {
         
         int[][] result = new int[ans.size()][2];
         for(int i = 0 ; i < ans.size() ; i++) {
-            System.out.println(ans.get(i).get(0)+" and "+ans.get(i).get(1));
             result[i][0] = ans.get(i).get(0);
             result[i][1] = ans.get(i).get(1);
         }

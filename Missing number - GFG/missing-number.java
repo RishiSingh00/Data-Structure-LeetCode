@@ -39,11 +39,13 @@ class Compute {
     
     public static int missingNumber(int A[], int N)
     {
+         // Your code goes here
          int sum = 0;
-         for(int i : A) {
+         
+         for(int i : A){
              sum+=i;
          }
          
-         return N*(N+1)/2 - sum ;
+         return (int)(N*(N+1)/2)-sum;
     }
 }

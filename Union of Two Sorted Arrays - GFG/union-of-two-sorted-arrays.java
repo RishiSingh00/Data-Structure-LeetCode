@@ -54,50 +54,49 @@ class Solution
     //Function to return a list containing the union of the two arrays.
     public static ArrayList<Integer> findUnion(int arr1[], int arr2[], int n, int m)
     {
+        if(arr2.length > arr1.length) {
+            int[] temp = arr2;
+            arr2 = arr1;
+            arr1 = temp;
+        }
         // add your code here
+        ArrayList<Integer> ans = new ArrayList<>();
         
-        ArrayList<Integer> result = new ArrayList<>();
-        int i=0, j=0;
-        
-        if(arr1[0] < arr2[0])
-            result.add(arr1[0]);
-        else
-            result.add(arr2[0]);
-        
-        while(i<arr1.length && j<arr2.length) {
-            
-            if(arr1[i] == result.get(result.size()-1))
+        int counter = -1,i = 0, j = 0 ;
+        while(i < arr1.length && j < arr2.length ) {
+            int temp = 0;
+            if(arr1[i] < arr2[j] ){
+                temp = arr1[i];
                 i++;
-            else if(arr2[j] == result.get(result.size()-1))
-                j++;
-            else if(arr1[i] == arr2[j]  ) {
-                result.add(arr1[i]);
+            }
+            else if(arr1[i] == arr2[j]){
+                temp = arr1[i];
                 i++;
                 j++;
             }
-            else if(arr1[i] < arr2[j] ){
-                result.add(arr1[i]);
-                i++;}
-            
-            else {
-                result.add(arr2[j]);
-                j++;}
-        }
-        
-        while(i < n) {
-            if(arr1[i] != result.get(result.size()-1))
-                result.add(arr1[i++]);
-            else
-                i++;
-        }
-        while(j < m) {
-            if(arr2[j] != result.get(result.size()-1))
-                result.add(arr2[j++]);
-            else
+            else{
+                temp = arr2[j];
                 j++;
+            }
+            if(counter == -1 || ans.get(counter)!=temp){
+                ans.add(temp);
+                counter++;
+            }
         }
         
-        return result;
+        for( ; i < arr1.length ; i++) {
+            if(counter == -1 || ans.get(counter)!=arr1[i]){
+                ans.add(arr1[i]);
+                counter++;
+            }
+        }
+        for(;j<arr2.length ; j++){
+            if(ans.get(counter)!=arr2[j]){
+                ans.add(arr2[j]);
+                counter++;
+            }
+        }
+        return ans;
     }
 }
 

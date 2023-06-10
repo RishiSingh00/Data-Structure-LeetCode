@@ -49,15 +49,18 @@ class Solution{
     //Function to find the leaders in the array.
     static ArrayList<Integer> leaders(int arr[], int n){
         // Your code here
+        
+        ArrayList<Integer> leader = new ArrayList<>();
+        
         int currMax = Integer.MIN_VALUE;
-        ArrayList<Integer> ans = new ArrayList<>();
-        for(int i = n-1 ; i >= 0 ; i--) {
+        for(int i=n-1 ; i >=0 ; i--) {
             if(arr[i] >= currMax){
+                leader.add(arr[i]);
                 currMax = arr[i];
-                ans.add(currMax);
             }
+            
         }
-        Collections.reverse(ans);
-        return ans;
+        Collections.reverse(leader);
+        return leader;
     }
 }

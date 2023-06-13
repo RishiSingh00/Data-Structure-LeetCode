@@ -41,7 +41,7 @@ class Solution{
     // n is the size of array
     static int findFloor(long arr[], int n, long x)
     {
-        int ans = -1;
+        
         int s = 0, e = n-1;
         
         while(s <= e) {
@@ -51,12 +51,11 @@ class Solution{
             if(arr[m] == x) return m;
             
             if(arr[m] < x) {
-                ans = m;
                 s = m+1;
             }
             else e = m - 1;
         }
-        return ans;
+        return e;
         
     }
     

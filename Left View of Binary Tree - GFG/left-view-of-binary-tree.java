@@ -127,20 +127,21 @@ class Tree
     {
       // Your code here
       ArrayList<Integer> ans = new ArrayList<>();
-      if(root == null) return ans;
-      Queue<Node> q = new LinkedList<>();
-      q.add(root);
-      
-      while(!q.isEmpty()){
-          int size = q.size();
-          ans.add(q.peek().data);
-          
-          for(int i = 0 ; i < size ; i++) {
-              Node temp = q.poll();
-              if(temp.left != null) q.add(temp.left);
-              if(temp.right != null) q.add(temp.right);
-          }
-      }
+      func(root,1,0,ans);
       return ans;
+      
+    }
+    
+    int func(Node root,int level,int maxLevel,ArrayList<Integer> ans) {
+        if(root == null) return maxLevel;
+        if(level > maxLevel) {
+            ans.add(root.data);
+            maxLevel++;
+        }
+        
+        maxLevel = func(root.left,level+1,maxLevel,ans);
+        maxLevel = func(root.right,level+1,maxLevel,ans);
+        
+        return maxLevel;
     }
 }

@@ -123,17 +123,15 @@ class Solution
 		if(node == null) return 0;
 		int left = helperFindMax(node.left);
 		int right = helperFindMax(node.right);
-		
+		if(left < 0) left = 0;
+		if(right < 0) right = 0;
 		int currMax = Math.max(left,right);
 
-		if(left+right+node.data < currMax+node.data){
-		    if(currMax < 0) {max = max < node.data ? node.data : max;}
-		    else
-		        max = max < currMax+node.data ? currMax+node.data : max;
+		if(left+right+node.data > max){
+		    max = left+right+node.data;
 		}
-		else max = max < left+right+node.data ? left+right+node.data : max;
 		
-		return Math.max(currMax+node.data, node.data);
+		return currMax+node.data;
 
 	}
     int findMaxSum(Node node)
